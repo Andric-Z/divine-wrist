@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>灵签 · 命运之钥</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="stars-container">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 初始页面 -->
+        <div id="intro-page" class="page active">
+            <div class="logo-container">
+                <div class="mystical-symbol">✧</div>
+                <h1 class="title">灵签</h1>
+                <p class="subtitle">命运之钥 · 问道星辰</p>
+            </div>
+            
+            <div class="oracle-types">
+                <div class="oracle-type" data-type="east">
+                    <span class="icon">☯</span>
+                    <span class="name">东方命理</span>
+                    <span class="desc">周易卦象 · 五行运势</span>
+                </div>
+                <div class="oracle-type" data-type="west">
+                    <span class="icon">☆</span>
+                    <span class="name">西方占卜</span>
+                    <span class="desc">星座守护 · 塔罗启示</span>
+                </div>
+                <div class="oracle-type" data-type="fusion">
+                    <span class="icon">◈</span>
+                    <span class="name">融合之道</span>
+                    <span class="desc">中西合璧 · 天人合一</span>
+                </div>
+            </div>
+
+            <button id="start-btn" class="mystical-btn">
+                <span class="btn-text">触摸命运</span>
+                <span class="btn-glow"></span>
+            </button>
+
+            <p class="hint">佩戴命运手链，触碰即可问道</p>
+        </div>
+
+        <!-- 摇签页面 -->
+        <div id="shake-page" class="page">
+            <div class="bamboo-container">
+                <div class="bamboo-holder">
+                    <div class="bamboo-tube" id="tube">
+                        <div class="tube-body">
+                            <div class="tube-pattern"></div>
+                            <div class="tube-pattern"></div>
+                            <div class="tube-pattern"></div>
+                        </div>
+                        <div class="sticks-container" id="sticks">
+                            <div class="stick"></div>
+                            <div class="stick"></div>
+                            <div class="stick"></div>
+                            <div class="stick"></div>
+                            <div class="stick"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="shake-hint" id="shake-hint">摇晃签筒，聆听命运</p>
+            <p class="shake-hint" id="shake-hint-mobile">轻触屏幕，与命运对话</p>
+        </div>
+
+        <!-- 解签页面 -->
+        <div id="result-page" class="page">
+            <div class="result-card">
+                <div class="card-header">
+                    <div class="sign-number" id="sign-number">第一签</div>
+                    <div class="sign-type" id="sign-type">上上签</div>
+                </div>
+                
+                <div class="sign-visual">
+                    <div class="hexagram" id="hexagram">䷀</div>
+                    <div class="constellation" id="constellation">♈</div>
+                </div>
+
+                <div class="sign-content">
+                    <h2 class="sign-title" id="sign-title">乾为天</h2>
+                    <p class="sign-poem" id="sign-poem">天行健，君子以自强不息</p>
+                </div>
+
+                <div class="interpretation">
+                    <div class="interpret-section">
+                        <h3 class="section-title">
+                            <span class="icon">☯</span>
+                            东方命理
+                        </h3>
+                        <p class="section-content" id="east-interpret">
+                            卦象显示：此时正值运势上升之期，如日中天，诸事顺遂。
+                            五行之中，水木相生，主智慧通达，事业有成。
+                        </p>
+                    </div>
+                    
+                    <div class="interpret-section">
+                        <h3 class="section-title">
+                            <span class="icon">☆</span>
+                            西方占卜
+                        </h3>
+                        <p class="section-content" id="west-interpret">
+                            星象指引：守护星此刻处于有利相位，能量充沛。
+                            塔罗启示：命运之轮正位，转机已至，把握当下。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lucky-elements">
+                    <div class="lucky-item">
+                        <span class="label">幸运色</span>
+                        <span class="value" id="lucky-color">紫色</span>
+                    </div>
+                    <div class="lucky-item">
+                        <span class="label">幸运数</span>
+                        <span class="value" id="lucky-number">7</span>
+                    </div>
+                    <div class="lucky-item">
+                        <span class="label">守护星</span>
+                        <span class="value" id="lucky-star">金星</span>
+                    </div>
+                </div>
+            </div>
+
+            <button id="restart-btn" class="mystical-btn secondary">
+                <span class="btn-text">再求一签</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 粒子效果 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 音效（可选） -->
+    <audio id="shake-sound" preload="auto">
+        <source src="shake.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="result-sound" preload="auto">
+        <source src="result.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="fortune.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
